@@ -20,17 +20,25 @@ export class FiltersComponent implements OnInit {
 
   filter(){
     let stars=this.selectedStars.join(",");
-    if(stars=="-1"){
-      stars="1,2,3,4,5";
-    }else{
-      stars="0";
-    }
+
     let name="@";
     if(this.nameFilter!=""){
       name=this.nameFilter;
     }
+
+    if(stars=="-1" ){
+      stars="1,2,3,4,5";
+    }else if(stars==""){
+      stars="-99";
+    }
+
+    if(stars=="-99"){
+      stars="1,2,3,4,5";
+    }
+
     console.log(name);
     console.log(stars);
+
     this.hotelservice.getFilteredHotels(name,stars).subscribe(htl=>{
       this.hotelservice.filterInformation=htl;
       this.messageService.sendMessage(htl);

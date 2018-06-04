@@ -27,7 +27,7 @@ router.post('/',(req,res,next)=>{
 });
 
 router.get('/:name/:stars',(req,res,next)=>{
-  const name = req.params.name;
+  const name = req.params.name.toLowerCase();
 	const stars= req.params.stars.split(',');
 
 	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
@@ -42,13 +42,27 @@ router.get('/:name/:stars',(req,res,next)=>{
 	var filtered = filter(dataHotel, function(item){
 		if(name!="@" || stars!="0"){
 		if(stars.length==1){
-			return item.stars==stars || item.name.match(name);
+
+      if(stars!="0" && name!="@"){
+			     return item.stars==stars && item.name.toLowerCase().match(name);
+      }
+      else{
+          return item.stars==stars || item.name.toLowerCase().match(name);
+      }
+
 		}else{
 			for(i=0;i<stars.length;i++){
-				if(item.stars==stars[i] || item.name.match(name)){
-				return item.stars==stars[i] || item.name.match(name);
-			}
-			}
+        if(name!="@"){
+          if(item.stars==stars[i] && item.name.toLowerCase().match(name)){
+  				      return item.stars==stars[i] && item.name.toLowerCase().match(name);
+  			   }
+        }else{
+          if(item.stars==stars[i] || item.name.toLowerCase().match(name)){
+  				      return item.stars==stars[i] || item.name.toLowerCase().match(name);
+  			   }
+        }
+
+	     }
 
 		}
 	}else{
