@@ -1,0 +1,37 @@
+<div class="table table-striped table-responsive">
+<div class="row bg-light" *ngFor="let item of hotels" style="margin:3em;">
+  <div class="col-md-4 col-xs-4">
+    <img src="/assets/images/hotels/{{item.image}}" height="200" width="200"/>
+  </div>
+  <div class="col-md-4 col-xs-4">
+    <label class="col-md-12">{{item.name}}</label>
+    <div class="col-md-12 col-xs-12">
+      <form class="form-inline">
+      <div *ngFor="let s of stars">
+        <div *ngIf="s<item.stars+1" class="">
+          <img src="/assets/icons/filters/star.svg" height="16" width="16"  class="d-inline-block align-top" alt="almundo.com">
+        </div>
+
+      </div>
+    </form>
+    </div>
+    <div class="col-md-12">
+      <form class="form-inline">
+      <img  src="/assets/icons/amenities/{{amn}}.svg" class="img-fluid pull-xs-left" alt="..." *ngFor="let amn of item.amenities" height="16" width="16" style="margin:10px;">
+    </form>
+    </div>
+  </div>
+  <div class="col-md-4 col-xs-4 " style="border-left: dotted;">
+      <div class="row col-md-12 col-xs-12" align="center">
+        <label>Precio por noche por habitacion</label>
+      </div>
+      <div class="row  col-md-12 col-xs-12" align="center">
+          <label class="col-md-8 col-xs-8">ARS <b>{{item.price}}</b></label>
+      </div>
+      <div class="row  col-md-12 col-xs-12" align="center">
+        <button class="btn btn-primary col-md-6" >Ver hotel</button>
+      </div>
+
+  </div>
+</div>
+</div>

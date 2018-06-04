@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="nav flex-column">
+  <li class="nav-item" style="padding-top:1em">
+    <form class="form-inline">
+      <div class=" mr-sm-2"><b>Filtros</b></div>
+    </form>
+  </li>
+  <li class="nav-item" style="padding-top:1em">
+    <div class="form-inline">
+      <form class="form-inline row">
+        <img src="/assets/icons/filters/search.svg" height="16" width="16"  class="d-inline-block align-top" alt="almundo.com">
+
+        <label style="padding-left:1em"> Nombre  de hotel</label>
+      </form>
+      <div class="form-inline row">
+        <input class="form-control mr-sm-2" type="search" placeholder="Ingrese el nombre del hotel" aria-label="Search" [(ngModel)]="nameFilter">
+        <button class="btn btn-outline-primary my-2 my-sm-0"  (click)="filter()">Aceptar</button>
+      </div>
+    </div>
+  </li>
+  <li class="nav-item" style="padding-top:1em">
+      <div class="form-inline" >
+        <img src="/assets/icons/filters/star.svg" height="16" width="16"  class="d-inline-block align-top" alt="almundo.com">
+        <label style="padding-left:1em">Estrellas</label>
+      </div>
+
+      <ul class="nav flex-column"  style="padding-top:1em">
+        <li class="nav-item" >
+          <input type="checkbox" (change)="setSelectedStar($event)" name="stars" value="{{-1}}">
+          <label>Todas las estrellas</label>
+        </li>
+        <li class="nav-item" *ngFor="let item of stars">
+          <input type="checkbox" (change)="setSelectedStar($event)" name="stars" value="{{item[0]}}">
+          <img src="/assets/icons/filters/star.svg" height="16" width="16"  class="d-inline-block align-top row" alt="almundo.com" *ngFor="let i of item" >
+        </li>
+    </ul>
+
+  </li>
+</ul>
+</div>
+</nav>
